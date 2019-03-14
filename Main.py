@@ -44,7 +44,7 @@ def Model(Encoding,Scores,Run_name,step_size,loop_dict,var_dict,round_data,Elast
         Loop_num = 1 #
         AM_EndOfLoopError.append(Amplitude_Tuning(X,y,step_size,score_dict,Loop_num,Run_name,cv_round,loop_dict,var_dict))
         round_data[cv_round] = loop_dict
-        while ((AM_EndOfLoopError[-1]-AM_EndOfLoopError[-2])/(AM_EndOfLoopError[-2])) < -0.01:
+        while ((AM_EndOfLoopError[-1]-AM_EndOfLoopError[-2])/(AM_EndOfLoopError[-2])) < -0.001:
             Loop_num += 1
             AM_EndOfLoopError.append(Amplitude_Tuning(X,y,step_size,score_dict,Loop_num,Run_name,cv_round,loop_dict,var_dict)) 
             round_data[cv_round] = loop_dict 

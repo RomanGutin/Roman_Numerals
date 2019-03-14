@@ -34,13 +34,8 @@ def exclude(lst, i):
 
     return lst[:i] + lst[i+1:]
 
-def PlotErrors():  ##Generates Plots Mid-AM Tuning ##
-    time =np.arange(0,len(Errors))
-    var_dict[variable] = [Errors,Scores]
-    ax= plt.subplot(111)
-    ax.plot(time,Errors, label='MSE')
-    plt.title(str(Loop_num) +"_" + str(variable))
-    plt.show()
+
+   
         
 def Amplitude_Tuning(X,y,step_size,score_dict,Loop_num,Run_name,cv_round,loop_dict,var_dict):
     for variable in score_dict.keys():
@@ -97,7 +92,12 @@ def Amplitude_Tuning(X,y,step_size,score_dict,Loop_num,Run_name,cv_round,loop_di
                     Scores.append(Scores[-1]+perturbation)
                     score_dict[variable] = Scores[-1]
                     Errors.append(Get_Error(X,y,score_dict)) 
-        PlotErrors()
+        time =np.arange(0,len(Errors))
+        var_dict[variable] = [Errors,Scores]
+        ax= plt.subplot(111)
+        ax.plot(time,Errors, label='MSE')
+        plt.title(str(Loop_num) +"_" + str(variable))
+        plt.show()
     loop_dict[Loop_num]= var_dict    
     End_of_AM_Error= Get_Error(X,y,score_dict)
     return End_of_AM_Error
